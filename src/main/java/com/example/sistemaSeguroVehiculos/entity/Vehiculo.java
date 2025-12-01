@@ -1,20 +1,21 @@
 package com.example.sistemaSeguroVehiculos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity // Indica que la clase es una entidad de base de datos
+import java.util.List;
+
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Vehiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "idVehiculo")
     private Long idVehiculo;
 
@@ -32,4 +33,12 @@ public class Vehiculo {
 
     @Column(name = "color", nullable = false)
     private String vehiculoColor;
+
+    @OneToOne
+    @JoinColumn(name = "idConductor", referencedColumnName = "idConductor")
+    @JsonIgnore
+    private Conductor conductor;
+
+    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL)
+    private List<Seguro> seguros;
 }

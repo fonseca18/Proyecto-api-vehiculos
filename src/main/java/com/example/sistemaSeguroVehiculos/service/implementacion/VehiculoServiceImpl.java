@@ -19,22 +19,22 @@ public class VehiculoServiceImpl implements VehiculoService {
 
     @Override
     public Vehiculo registerVehiculo(Vehiculo vehiculo) {
-        return vehiculoRepository.save(vehiculo);//Gusrda el producto en la base de datos
+        return vehiculoRepository.save(vehiculo);
     }
 
     @Override
     public List<Vehiculo> listVehiculo() {
-        return vehiculoRepository.findAll();//retorna todos los de la bases de datos
+        return vehiculoRepository.findAll();
     }
 
     @Override
     public Optional<Vehiculo> searchVehiculoByModelo(String modelo) {
-        return vehiculoRepository.findByVehiculoModelo(modelo);//Buscar un producto por su nombre y lo retorna
+        return vehiculoRepository.findByVehiculoModelo(modelo);
     }
 
     @Override
     public Optional<Vehiculo> searchVehiculoById(Long idVehiculo) {
-        return vehiculoRepository.findByIdVehiculo(idVehiculo);//Buscar un producto por ID y lo retorna
+        return vehiculoRepository.findByIdVehiculo(idVehiculo);
     }
 
     @SneakyThrows
@@ -58,7 +58,7 @@ public class VehiculoServiceImpl implements VehiculoService {
         Vehiculo vehiculoExisting = vehiculoRepository.findByIdVehiculo(idVehiculo)
                 .orElseThrow(() -> new Exception("Product With ID" + idVehiculo + ("Not Found")));
 
-        vehiculoRepository.deleteById(idVehiculo);//Elimina un producto en la base de datos
+        vehiculoRepository.deleteById(idVehiculo);
     }
 
 }
